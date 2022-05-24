@@ -16,20 +16,23 @@ title = tk.Label(
   bg='brown',
   fg='#FF0'
 )
-
+name_var = tk.StringVar(root)
 name_label = tk.Label(root, text='What is your name?')
-name_inp = tk.Entry(root)
+name_inp = tk.Entry(root,textvariable=name_var)
 
+eater_var = tk.BooleanVar()
 eater_inp = tk.Checkbutton(
-  root,
+  root, variable=eater_var,
   text='Check this box if you eat bananas'
 )
 
+num_var = tk.IntVar(value=3)
 num_label = tk.Label(
   root, text='How many bananas do you eat per day?'
 )
-num_inp = tk.Spinbox(root, from_=0, to=1000, increment=1)
+num_inp = tk.Spinbox(root, textvariable=num_var, from_=0, to=1000, increment=1)
 
+color_var = tk.StringVar(value='Any')
 color_label = tk.Label(
   root,
   text='What is the best color for a banana?'
@@ -38,13 +41,15 @@ color_inp = tk.Listbox(root, height=1)  # Only show selected item
 # add choices
 color_choices = ('Any', 'Green', 'Green-Yellow', 'Yellow', 'Brown Spotted', 'Black'
   )
+color_inp = tk.OptionMenu(root, color_var, *color_choices)
 for choice in color_choices:
   color_inp.insert(tk.END, choice)
 
+plantain_var = tk.BooleanVar()
 plantain_label = tk.Label(root, text='Do you eat plantains?')
 plantain_frame = tk.Frame(root)
-plantain_yes_inp = tk.Radiobutton(plantain_frame, text='Yes')
-plantain_no_inp = tk.Radiobutton(plantain_frame, text='Ewww, no!')
+plantain_yes_inp = tk.Radiobutton(plantain_frame, text='Yes', variable=plantain_var)
+plantain_no_inp = tk.Radiobutton(plantain_frame, text='Ewww, no!', variable=plantain_var)
 
 banana_haiku_label = tk.Label(
   root, 
